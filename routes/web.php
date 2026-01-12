@@ -3,19 +3,20 @@ use App\Http\Controllers\Clients\AuthController;
 use App\Http\Controllers\Clients\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\ForgotPasswordController;
-use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Clients\AccountController;
 use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Clients\ProductController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Clients\CartController;
+use App\Http\Controllers\Clients\CheckoutController;
 use App\Http\Controllers\Clients\OrderController;
 use App\Http\Controllers\Clients\ReviewsController;
 use App\Http\Controllers\Clients\ContactController;
 use App\Http\Controllers\Clients\WishListController;
 use App\Http\Controllers\Clients\SearchController;
 
+Route::prefix('/')->group(function () {
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+    Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/about', function () {
     return view('clients.pages.about');
@@ -113,3 +114,9 @@ Route::post('/contact', [ContactController::class, 'sendContact'])->name('contac
 
 //Seach
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+});
+
+
+
+
+require __DIR__ . '/admin.php';
